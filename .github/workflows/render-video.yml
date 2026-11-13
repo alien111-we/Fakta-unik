@@ -29,12 +29,8 @@ jobs:
       - name: Render video
         run: npx remotion render src/index.ts ${{ github.event.inputs.composition }} out/video.mp4
 
-      - name: Upload hasil video
+      -       - name: Upload hasil video
         uses: actions/upload-artifact@v4
-        with:
-          name: video-mp4
-          path: out/video.mp4
-          retention-days: 7
         with:
           name: video-mp4
           path: out/video.mp4
