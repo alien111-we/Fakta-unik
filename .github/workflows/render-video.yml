@@ -24,7 +24,8 @@ jobs:
         run: npm install
 
       - name: Render video
-        run: run: npx remotion render src/index.ts ${{ github.event.inputs.composition }} out/video.mp4
+        run: npx remotion render src/index.ts ${{ github.event.inputs.composition }} out/video.mp4
+
       - name: Upload hasil video
         uses: actions/upload-artifact@v4
         with:
