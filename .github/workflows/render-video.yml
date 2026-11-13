@@ -1,0 +1,34 @@
+name: Render video
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: 'ID composition Remotion'
+        required: true
+        default: 'NyamukGigit'
+
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Render video
+        run: npx remotion render ${{ github.event.inputs.composition }} out/video.mp4
+
+      - name: Upload hasil video
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-mp4
+          path: out/video.mp4
+          retention-days: 7
